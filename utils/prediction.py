@@ -35,7 +35,6 @@ import json
 import os
 
 import numpy as np
-import tensorflow as tf
 from PIL import Image, ImageOps
 
 IMG_SIZE = 224
@@ -72,6 +71,8 @@ def load_model(model_path: str):
             f"final_DR_model.keras inside the models/ directory."
         )
     try:
+        import tensorflow as tf
+
         model = tf.keras.models.load_model(model_path, compile=False)
         return model
     except Exception as exc:

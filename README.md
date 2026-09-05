@@ -133,26 +133,13 @@ Images are processed by the local Streamlit process and are not sent to external
 
 ## Deployment
 
-For Streamlit Community Cloud, push the project to a repository, select `app.py` as the entry point, and use `requirements.txt`. Keep the model file available to the deployment; large model files may need a release asset or managed storage with a documented access policy.
-
-### Render deployment
-
-This project includes `render.yaml`, which defines a Render web service named `drishtiai`. To publish it:
-
-1. Create a GitHub repository and push this project folder, including `models/final_DR_model.keras` and `models/class_mapping.json`.
-2. In Render, choose **New + → Blueprint** and connect the GitHub repository.
-3. Select the repository's `render.yaml` and apply the Blueprint.
-4. Wait for the TensorFlow build to finish, then open the generated `onrender.com` URL.
-
-The Blueprint uses Python 3.11, installs `requirements.txt`, and binds Streamlit to Render's `$PORT`. The free plan may sleep after inactivity and has limited CPU/RAM; model startup can take a few minutes.
-
-For a container deployment, a minimal command is:
+Run the app locally from this folder:
 
 ```text
-streamlit run app.py --server.address=0.0.0.0 --server.port=8501
+\.venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-Use HTTPS and a documented privacy/retention policy before handling real patient data. This prototype is not a substitute for clinical governance, validation, or regulatory review.
+The app opens at `http://localhost:8501`. The model loads only after **Analyze Image** is selected, so the dashboard can render without waiting for TensorFlow startup.
 
 ## Troubleshooting
 

@@ -44,8 +44,6 @@ trained weights in any way.
 
 import cv2
 import numpy as np
-import tensorflow as tf
-from tensorflow.keras.applications.resnet50 import preprocess_input
 
 LAST_CONV_LAYER_NAME = "conv5_block3_out"
 RESNET_SUBMODEL_NAME = "resnet50"
@@ -95,6 +93,9 @@ def make_gradcam_heatmap(preprocessed_batch: np.ndarray, model,
         probabilities   : np.ndarray, shape (3,), softmax probabilities
     """
     try:
+        import tensorflow as tf
+        from tensorflow.keras.applications.resnet50 import preprocess_input
+
         base_model = model.get_layer(RESNET_SUBMODEL_NAME)
     except ValueError as exc:
         raise GradCAMError(f"ResNet50 sub-model not found: {exc}")

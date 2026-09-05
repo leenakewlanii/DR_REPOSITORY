@@ -1,7 +1,12 @@
 [server]
 headless = true
+fileWatcherType = "none"
+maxUploadSize = 15
 enableCORS = false
 enableXsrfProtection = true
 
 [browser]
 gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"

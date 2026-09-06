@@ -135,7 +135,7 @@ def screening():
     warning = technical_quality_warning(image)
     if warning:
         st.warning(f"Technical image-quality warning: {warning} This is not a clinical image-quality assessment.")
-    st.image(image, caption="Original retinal image", use_container_width=True)
+    st.image(image, caption="Original retinal image")
     if st.button(translated("analyze", "Analyze Image"), type="primary"):
         try:
             model, mapping = resources()
@@ -201,7 +201,7 @@ def render_result(low_bandwidth=False):
             for col, image, title in zip(st.columns(3), images, ["Original image", "Grad-CAM heatmap", "Grad-CAM overlay"]):
                 with col:
                     st.markdown(f'<div class="card"><div class="card-title">{title}</div>', unsafe_allow_html=True)
-                    st.image(image, use_container_width=True)
+                    st.image(image)
                     st.markdown('</div>', unsafe_allow_html=True)
 
 
